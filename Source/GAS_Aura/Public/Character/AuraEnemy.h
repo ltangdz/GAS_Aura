@@ -16,9 +16,7 @@ class GAS_AURA_API AAuraEnemy : public AAuraCharacterBase, public IEmenyInterfac
 	GENERATED_BODY()
 
 public:
+	AAuraEnemy();
 	void HighlightActor() override;
 	void UnHighlightActor() override;
-
-	UPROPERTY(BlueprintReadOnly)
-	bool bIsHighlighted;
 };

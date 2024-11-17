@@ -6,7 +6,7 @@
 #include "GameFramework/Character.h"
 #include "AuraCharacterBase.generated.h"
 
-UCLASS(Abstract)	//抽象类 防止生成实例
+UCLASS(Abstract)	// Set to Abstract class in case generating instance
 class GAS_AURA_API AAuraCharacterBase : public ACharacter
 {
 	GENERATED_BODY()
@@ -18,7 +18,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
-	TObjectPtr<USkeletalMeshComponent> Weapon;	//武器静态网格体
+	TObjectPtr<USkeletalMeshComponent> Weapon;	// Weapon Ptr
 
 public:	
 };
