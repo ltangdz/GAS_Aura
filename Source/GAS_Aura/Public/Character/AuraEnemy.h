@@ -14,9 +14,11 @@ UCLASS()
 class GAS_AURA_API AAuraEnemy : public AAuraCharacterBase, public IEmenyInterface
 {
 	GENERATED_BODY()
-	
-	void HighlightActor() override;
 
+public:
+	void HighlightActor() override;
 	void UnHighlightActor() override;
 
+	UPROPERTY(BlueprintReadOnly)
+	bool bIsHighlighted;
 };
