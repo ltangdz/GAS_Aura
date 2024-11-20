@@ -17,6 +17,12 @@ class GAS_AURA_API AAuraEnemy : public AAuraCharacterBase, public IEmenyInterfac
 
 public:
 	AAuraEnemy();
+
+	/* Enemy Interface */
 	void HighlightActor() override;
 	void UnHighlightActor() override;
+	/* end Enemy Interface */
+
+protected:
+	virtual void BeginPlay() override;
 };

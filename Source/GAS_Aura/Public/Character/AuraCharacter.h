@@ -17,4 +17,11 @@ class GAS_AURA_API AAuraCharacter : public AAuraCharacterBase
 
 public:
 	AAuraCharacter();
+
+protected:
+	virtual void PossessedBy(AController* NewController) override;
+	virtual void OnRep_PlayerState() override;
+
+private:
+	void InitAbilityActorInfo();
 };
