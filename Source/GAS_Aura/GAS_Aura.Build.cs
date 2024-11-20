@@ -7,8 +7,12 @@ public class GAS_Aura : ModuleRules
 	public GAS_Aura(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
-	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput" });
+
+		PublicDependencyModuleNames.AddRange(new string[]
+		{
+			"Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "GameplayAbilities", "GameplayTags",
+			"GameplayTasks"
+		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
