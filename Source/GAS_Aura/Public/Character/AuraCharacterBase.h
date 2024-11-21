@@ -17,7 +17,7 @@ class GAS_AURA_API AAuraCharacterBase : public ACharacter, public IAbilitySystem
 
 public:
 	AAuraCharacterBase();
-	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const  override;
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
 protected:
