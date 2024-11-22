@@ -43,7 +43,12 @@ class GAS_AURA_API UAuraWidgetController : public UObject
 public:
 	UFUNCTION(BlueprintCallable)
 	void SetWidgetControllerParams(const FWidgetControllerParams& WCParams);
+
+	// Broadcast Attributes to Widgets (Implementing in subclass)
 	virtual void BroadcastInitialValues();
+
+	// Bind methods to on attribute changed delegate (Implementing in subclass)
+	virtual void BindCallbacksOnDependencies();
 	
 protected:
 	UPROPERTY(BlueprintReadOnly, Category="WidgetController")
