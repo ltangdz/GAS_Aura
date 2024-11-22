@@ -36,6 +36,7 @@ private:
 	void Move(const FInputActionValue& InputActionValue);
 
 	void CursorTrace();
-	TObjectPtr<IEmenyInterface> LastActor;
-	TObjectPtr<IEmenyInterface> ThisActor;
+	
+	IEmenyInterface* LastActor;
+	IEmenyInterface* ThisActor;
 };

@@ -6,12 +6,27 @@
 #include "UI/WidgetController/AuraWidgetController.h"
 #include "OverlayWidgetController.generated.h"
 
+/*
+ *  Dynamic: Blueprint assignable
+ *  Multicast: Not only one widget listen
+ *  OneParam: Broadcast a specific attribute
+ */
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHealthChangedSignature, float, NewHealth);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMaxHealthChangedSignature, float, NewMaxHealth);
 /**
  * 
  */
-UCLASS()
+UCLASS(BlueprintType, Blueprintable)
 class GAS_AURA_API UOverlayWidgetController : public UAuraWidgetController
 {
 	GENERATED_BODY()
-	
+
+public:
+	virtual void BroadcastInitialValues() override;
+
+	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes")
+	FOnHealthChangedSignature OnHealthChanged;
+
+	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes")
+	FOnMaxHealthChangedSignature OnMaxMaxHealthChanged;
 };
