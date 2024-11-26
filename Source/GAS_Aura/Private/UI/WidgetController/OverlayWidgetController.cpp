@@ -3,6 +3,7 @@
 
 #include "UI/WidgetController/OverlayWidgetController.h"
 
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 
 void UOverlayWidgetController::BroadcastInitialValues()
@@ -22,6 +23,12 @@ void UOverlayWidgetController::BindCallbacksOnDependencies()
 	// When Attribute Value Change, call on the corresponding method with new FGameplayAttribute 
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
 		AuraAttributeSet->GetHealthAttribute()).AddUObject(this, &UOverlayWidgetController::HealthChanged);
+		// AuraAttributeSet->GetHealthAttribute()).AddLambda(
+		// 	[this](const FOnAttributeChangeData& Data)
+		// 	{
+		// 		OnHealthChanged.Broadcast(Data.NewValue);
+		// 	}
+		// 	);
 	
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
 		AuraAttributeSet->GetMaxHealthAttribute()).AddUObject(this, &UOverlayWidgetController::MaxHealthChanged);
@@ -31,6 +38,17 @@ void UOverlayWidgetController::BindCallbacksOnDependencies()
 	
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
 		AuraAttributeSet->GetMaxManaAttribute()).AddUObject(this, &UOverlayWidgetController::MaxManaChanged);
+
+	Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent)->EffectAssetTags.AddLambda(
+		[](const FGameplayTagContainer& AssetTags)
+	{
+			for (const FGameplayTag& Tag : AssetTags)
+			{
+				// Broadcast the tag to the widget controller
+				const FString Msg = FString::Printf(TEXT("GE Tag: %s"), *Tag.ToString());
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, Msg);
+			}
+	});
 }
 
 void UOverlayWidgetController::HealthChanged(const FOnAttributeChangeData& Data) const
